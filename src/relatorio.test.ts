@@ -8,23 +8,13 @@ describe("descricaoCategoria", () => {
         const esperado: string[] = ["Alimentação", "Transporte", "Lazer", "Moradia"];
 
         for (let i = 0; i < categorias.length; i++) {
-            const resultado = descricaoCategoria(categorias[i]);
+            const resultado = descricaoCategoria(categorias[i]!);
             expect(resultado).toBe(esperado[i]);
         }
     });
 
-    it("deve retornar uma matriz com uma linha por categoria e uma coluna com a descrição da categoria", () => {
-        const categorias: Categoria[] = ["Alimentação", "Transporte", "Lazer", "Moradia"];
-        const esperado: string[][] = [
-            ["Alimentação"],
-            ["Transporte"],
-            ["Lazer"],
-            ["Moradia"]
-        ];
-
-        for (let i = 0; i < categorias.length; i++) {
-            const resultado = descricaoCategoria(categorias[i]);
-            expect(resultado).toBe(esperado[i][0]);
-        }
-    });
+    it("deve funcionar com as categorias nos limites do tipo", () => {
+    expect(descricaoCategoria("Alimentação")).toBe("Alimentação");
+    expect(descricaoCategoria("Moradia")).toBe("Moradia");
+});
 });
