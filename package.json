@@ -1,0 +1,26 @@
+{
+  "name": "controle_de_gastos_do_mes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Br3n0cas/Controle_de_Gastos_do_Mes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Br3n0cas/Controle_de_Gastos_do_Mes/issues"
+  },
+  "homepage": "https://github.com/Br3n0cas/Controle_de_Gastos_do_Mes#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}
