@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {adicionarDespesa, despesasDaCategoria, removerDespesa} from "./despesas";
+import {adicionarDespesa, despesasDaCategoria, removerDespesa, totalGasto} from "./despesas";
 import {Categoria, Despesa} from "./tipos";
 
 describe("adicionarDespesa", () => {
@@ -64,5 +64,24 @@ describe("despesasDaCategoria", () => {
     const resultado = despesasDaCategoria(despesas, "Transporte");
 
     expect(resultado).toEqual([]);
+  });
+});
+
+describe("totalGasto", () => {
+  it("Deve retornar a soma dos valores de todas as despesas", () => {
+    const despesas: Despesa[] = [
+      { id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 10 },
+      { id: 2, descricao: "Cinema", valor: 30, categoria: "Lazer", mes: 10 }
+    ];
+    const resultado = totalGasto(despesas);
+
+    expect(resultado).toBe(50);
+  });
+
+  it("Se a lista de despesas estiver vazia, deve retornar 0", () => {
+    const despesas: Despesa[] = [];
+    const resultado = totalGasto(despesas);
+
+    expect(resultado).toBe(0);
   });
 });
