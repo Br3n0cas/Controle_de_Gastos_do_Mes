@@ -56,4 +56,13 @@ describe("despesasDaCategoria", () => {
       { id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 10 }
     ]);
   });
+  it("Deve retornar uma lista vazia se não houver despesas na categoria especificada", () => {
+    const despesas: Despesa[] = [
+      { id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 10 },
+      { id: 2, descricao: "Cinema", valor: 30, categoria: "Lazer", mes: 10 }
+    ];
+    const resultado = despesasDaCategoria(despesas, "Transporte");
+
+    expect(resultado).toEqual([]);
+  });
 });
