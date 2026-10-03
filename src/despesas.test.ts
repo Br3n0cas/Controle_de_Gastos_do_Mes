@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {adicionarDespesa, removerDespesa} from "./despesas";
+import {adicionarDespesa, despesasDaCategoria, removerDespesa} from "./despesas";
 import {Categoria, Despesa} from "./tipos";
 
 describe("adicionarDespesa", () => {
@@ -40,5 +40,20 @@ describe("removerDespesa", () => {
     const resultado = removerDespesa(despesas, 3);
 
     expect(resultado).toEqual([...despesas]);
+  });
+});
+
+describe("despesasDaCategoria", () => {
+  it("Retorna todas as despesas de uma categoria específica", () => {
+    const despesas: Despesa[] = [
+      { id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 10 },
+      { id: 2, descricao: "Cinema", valor: 30, categoria: "Lazer", mes: 10 },
+      { id: 3, descricao: "Transporte", valor: 15, categoria: "Transporte", mes: 10 }
+    ];
+    const resultado = despesasDaCategoria(despesas, "Alimentação");
+
+    expect(resultado).toEqual([
+      { id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 10 }
+    ]);
   });
 });

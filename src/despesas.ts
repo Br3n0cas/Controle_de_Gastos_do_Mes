@@ -1,4 +1,4 @@
-import { Despesa } from "./tipos";
+import { Despesa, Categoria } from "./tipos";
 
 export function adicionarDespesa(
   despesas: Despesa[],
@@ -20,4 +20,11 @@ export function removerDespesa(
   id: number
 ): Despesa[] {
   return despesas.filter((despesa) => despesa.id !== id);
+}
+
+export function despesasDaCategoria(
+  despesas: Despesa[],
+  categoria: Categoria
+): Despesa[] {
+  throw new Error("não implementado");
 }
