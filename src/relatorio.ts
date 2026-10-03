@@ -1,4 +1,4 @@
-import { Categoria } from "./tipos";
+import { Categoria, Despesa } from "./tipos";
 
 export function descricaoCategoria(categoria: Categoria): string {
   switch (categoria) {
@@ -14,4 +14,10 @@ export function descricaoCategoria(categoria: Categoria): string {
     case "Moradia":
       return "Moradia";
   }
+}
+
+export function matrizCategoriaMes(
+  despesas: Despesa[]
+): number[][] {
+  throw new Error("não implementado");
 }

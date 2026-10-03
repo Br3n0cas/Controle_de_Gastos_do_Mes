@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {descricaoCategoria} from "./relatorio";
+import {descricaoCategoria, matrizCategoriaMes} from "./relatorio";
 import {Categoria, Despesa} from "./tipos";
 
 describe("descricaoCategoria", () => {
@@ -17,4 +17,37 @@ describe("descricaoCategoria", () => {
     expect(descricaoCategoria("Alimentação")).toBe("Alimentação");
     expect(descricaoCategoria("Moradia")).toBe("Moradia");
 });
+});
+
+describe("matrizCategoriaMes", () => {
+    it("Deve retornar uma matriz com uma linha para cada categoria na ordem de CATEGORIAS, e 12 colunas (Meses)", () => {
+        const despesas: Despesa[] = [
+            { id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 1 },
+            { id: 2, descricao: "Cinema", valor: 30, categoria: "Lazer", mes: 2 },
+            { id: 3, descricao: "Transporte", valor: 15, categoria: "Transporte", mes: 3 },
+            { id: 4, descricao: "Aluguel", valor: 500, categoria: "Moradia", mes: 1 }
+        ];
+
+        const resultado = matrizCategoriaMes(despesas);
+
+        expect(resultado[0]![0]).toBe(20);  // Alimentação, janeiro
+        expect(resultado[1]![2]).toBe(15);  // Transporte, março
+        expect(resultado[2]![1]).toBe(30);  // Lazer, fevereiro
+        expect(resultado[3]![0]).toBe(500); // Moradia, janeiro
+    });
+
+    it("Deve retornar uma matriz 4x12 preenchida com zero quando não houver despesas", () => {
+        const despesas: Despesa[] = [];
+        const resultado = matrizCategoriaMes(despesas);
+
+        expect(resultado.length).toBe(4);
+
+        for (let i = 0; i < 4; i++) {
+            expect(resultado[i]!.length).toBe(12);
+
+            for (let j = 0; j < 12; j++) {
+                expect(resultado[i]![j]).toBe(0);
+            }
+        }
+    });
 });
