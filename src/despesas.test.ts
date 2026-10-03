@@ -30,4 +30,15 @@ describe("removerDespesa", () => {
       {id: 2, descricao: "Transporte", valor: 15, categoria: "Transporte", mes: 10}
     ]);
   });
+
+  it("se o id não existir, deve retornar uma retorna uma cópia igual", () => {
+    const despesas: Despesa[] = [
+      { id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 10 },
+      { id: 2, descricao: "Transporte", valor: 15, categoria: "Transporte", mes: 10 }
+    ];
+
+    const resultado = removerDespesa(despesas, 3);
+
+    expect(resultado).toEqual([...despesas]);
+  });
 });
