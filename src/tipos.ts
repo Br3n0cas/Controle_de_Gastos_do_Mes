@@ -3,13 +3,9 @@ export interface Despesa {
   descricao: string;
   valor: number;
   categoria: Categoria; // Union Type: limita a categoria às opções definidas, evitando valores inválidos.
-  mes: number;
+  mes: Mes; // Union Type: limita o mês às opções definidas, evitando valores inválidos.
   observacao?: string; // Opcional: nem toda despesa precisa ter uma observação.
 }
 
-export type Categoria = [
-  "Alimentação",
-  "Transporte",
-  "Lazer",
-  "Moradia"
-]
+export type Categoria = "Alimentação" | "Transporte" | "Lazer" | "Moradia";
+export type Mes = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
