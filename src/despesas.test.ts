@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {adicionarDespesa} from "./despesas";
+import {adicionarDespesa, removerDespesa} from "./despesas";
 import {Categoria, Despesa} from "./tipos";
 
 describe("adicionarDespesa", () => {
@@ -16,3 +16,18 @@ describe("adicionarDespesa", () => {
     expect(() => adicionarDespesa(despesas, novaDespesa)).toThrow("Mês inválido. Deve ser um número entre 1 e 12.");
   });
 }); 
+
+describe("removerDespesa", () => {
+  it("deve remover uma despesa pelo id", () => {
+    const despesas: Despesa[] = [
+      { id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 10 },
+      { id: 2, descricao: "Transporte", valor: 15, categoria: "Transporte", mes: 10 }
+    ];
+
+    const resultado = removerDespesa(despesas, 1);
+
+    expect(resultado).toEqual([
+      {id: 2, descricao: "Transporte", valor: 15, categoria: "Transporte", mes: 10}
+    ]);
+  });
+});
