@@ -11,7 +11,7 @@ export function adicionarDespesa(
   if (nova.mes < 1 || nova.mes > 12) {
     throw new Error("Mês inválido. Deve ser um número entre 1 e 12.");
   }
-
+  // Retorna um novo array para não alterar o array original de despesas.
   return [...despesas, nova];
 }
 

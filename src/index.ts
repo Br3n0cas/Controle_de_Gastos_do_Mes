@@ -1,5 +1,4 @@
 import { Despesa } from "./tipos";
-import { adicionarDespesa } from "./despesas";
 import { formatarRelatorio } from "./relatorio";
 
 const despesas: Despesa[] = [
@@ -50,14 +49,14 @@ const despesas: Despesa[] = [
     descricao: "Jogo",
     valor: 80,
     categoria: "Lazer",
-    mes: 4
+    mes: 3
   },
   {
     id: 8,
     descricao: "Conta de luz",
     valor: 120,
     categoria: "Moradia",
-    mes: 4
+    mes: 1
   }
 ];
 
