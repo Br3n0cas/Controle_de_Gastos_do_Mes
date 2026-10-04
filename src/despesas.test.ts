@@ -15,6 +15,17 @@ describe("adicionarDespesa", () => {
 
     expect(() => adicionarDespesa(despesas, novaDespesa)).toThrow("Mês inválido. Deve ser um número entre 1 e 12.");
   });
+
+  it("não deve alterar o array original", () => {
+    const despesas: Despesa[] = [{ id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 1, observacao: "Almoço com amigos" } ];
+    const novaDespesa: Despesa = { id: 2, descricao: "Transporte", valor: 15, categoria: "Transporte", mes: 1 };
+
+    const resultado = adicionarDespesa(despesas, novaDespesa);
+
+    expect(despesas).toHaveLength(1);
+    expect(resultado).toHaveLength(2);
+    expect(resultado).not.toBe(despesas);
+  });
 }); 
 
 describe("removerDespesa", () => {
