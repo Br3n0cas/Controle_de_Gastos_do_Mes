@@ -65,5 +65,59 @@ export function matrizCategoriaMes(despesas: Despesa[]): number[][] {
 }
 
 export function formatarRelatorio(despesas: Despesa[]): string {
-    throw new Error("não implementado");
+    const linhas: string[] = [];
+
+    const titulo = "RELATÓRIO DE GASTOS".toUpperCase();
+
+    linhas.push(titulo);
+    linhas.push("=".repeat(45));
+
+    const CATEGORIAS: Categoria[] = [
+        "Alimentação",
+        "Transporte",
+        "Lazer",
+        "Moradia"
+    ];
+
+    let totalGeral = 0;
+
+    for (let i = 0; i < CATEGORIAS.length; i++) {
+        let totalCategoria = 0;
+
+        for (let j = 0; j < despesas.length; j++) {
+            if (despesas[j]!.categoria === CATEGORIAS[i]) {
+                totalCategoria += despesas[j]!.valor;
+            }
+        }
+
+        totalGeral += totalCategoria;
+
+        const categoria = CATEGORIAS[i]!.padEnd(15);
+        const total = totalCategoria.toFixed(2).padStart(10);
+
+        linhas.push(`${categoria} R$ ${total}`);
+    }
+
+    linhas.push("=".repeat(45));
+    linhas.push(
+        `${"TOTAL GERAL".padEnd(15)} R$ ${totalGeral.toFixed(2).padStart(10)}`
+    );
+
+    let maior: Despesa | undefined;
+
+    for (let i = 0; i < despesas.length; i++) {
+        if (maior === undefined || despesas[i]!.valor > maior.valor) {
+            maior = despesas[i];
+        }
+    }
+
+    if (maior !== undefined) {
+        linhas.push(
+            `MAIOR DESPESA: ${maior.descricao} - R$ ${maior.valor.toFixed(2)}`
+        );
+    } else {
+        linhas.push("MAIOR DESPESA: Nenhuma");
+    }
+
+    return linhas.join("\n");
 }

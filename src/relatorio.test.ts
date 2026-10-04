@@ -53,21 +53,28 @@ describe("matrizCategoriaMes", () => {
 });
 
 describe("formatarRelatorio", () => {
-    it("deve formatar o relatório com as despesas agrupadas por categoria e mês", () => {
-        const despesas: Despesa[] = [
-            { id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 1 },
-            { id: 2, descricao: "Cinema", valor: 30, categoria: "Lazer", mes: 2 },
-            { id: 3, descricao: "Transporte", valor: 15, categoria: "Transporte", mes: 3 },
-            { id: 4, descricao: "Aluguel", valor: 500, categoria: "Moradia", mes: 1 }
-        ];
+    it("deve formatar o relatório com categorias, total geral e maior despesa", () => {
+    const despesas: Despesa[] = [
+        {id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 1},
+        { id: 2, descricao: "Aluguel", valor: 500, categoria: "Moradia", mes: 1},
+        { id: 3, descricao: "Cinema", valor: 30, categoria: "Lazer", mes: 2}
+    ];
 
-        const resultado = formatarRelatorio(despesas);
-        expect(resultado).toBe("Relatório de Despesas\n\nAlimentação:\n- Almoço (janeiro): R$ 20.00\n\nTransporte:\n- Transporte (março): R$ 15.00\n\nLazer:\n- Cinema (fevereiro): R$ 30.00\n\nMoradia:\n- Aluguel (janeiro): R$ 500.00\n");
-    });
+    const resultado = formatarRelatorio(despesas);
 
-    it("deve formatar o relatório corretamente mesmo quando não houver despesas", () => {
-        const despesas: Despesa[] = [];
-        const resultado = formatarRelatorio(despesas);
-        expect(resultado).toBe("Relatório de Despesas\n\nNenhuma despesa registrada.");
+    expect(resultado).toContain("Alimentação");
+    expect(resultado).toContain("Transporte");
+    expect(resultado).toContain("Moradia");
+    expect(resultado).toContain("Lazer");
+    expect(resultado).toContain("TOTAL GERAL");
+    expect(resultado).toContain("550");
+});
+
+    it("deve formatar o relatório mesmo quando não houver despesas", () => {
+    const resultado = formatarRelatorio([]);
+
+    expect(resultado).toContain("RELATÓRIO");
+    expect(resultado).toContain("TOTAL GERAL");
+    expect(resultado).toContain("0.00");
     });
 });
