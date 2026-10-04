@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {descricaoCategoria, matrizCategoriaMes} from "./relatorio";
+import {descricaoCategoria, formatarRelatorio, matrizCategoriaMes} from "./relatorio";
 import {Categoria, Despesa} from "./tipos";
 
 describe("descricaoCategoria", () => {
@@ -49,5 +49,25 @@ describe("matrizCategoriaMes", () => {
                 expect(resultado[i]![j]).toBe(0);
             }
         }
+    });
+});
+
+describe("formatarRelatorio", () => {
+    it("deve formatar o relatório com as despesas agrupadas por categoria e mês", () => {
+        const despesas: Despesa[] = [
+            { id: 1, descricao: "Almoço", valor: 20, categoria: "Alimentação", mes: 1 },
+            { id: 2, descricao: "Cinema", valor: 30, categoria: "Lazer", mes: 2 },
+            { id: 3, descricao: "Transporte", valor: 15, categoria: "Transporte", mes: 3 },
+            { id: 4, descricao: "Aluguel", valor: 500, categoria: "Moradia", mes: 1 }
+        ];
+
+        const resultado = formatarRelatorio(despesas);
+        expect(resultado).toBe("Relatório de Despesas\n\nAlimentação:\n- Almoço (janeiro): R$ 20.00\n\nTransporte:\n- Transporte (março): R$ 15.00\n\nLazer:\n- Cinema (fevereiro): R$ 30.00\n\nMoradia:\n- Aluguel (janeiro): R$ 500.00\n");
+    });
+
+    it("deve formatar o relatório corretamente mesmo quando não houver despesas", () => {
+        const despesas: Despesa[] = [];
+        const resultado = formatarRelatorio(despesas);
+        expect(resultado).toBe("Relatório de Despesas\n\nNenhuma despesa registrada.");
     });
 });
