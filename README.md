@@ -70,22 +70,17 @@ npm run dev
 Executa o src/index.ts diretamente utilizando o script dev configurado no package.json.
 
 ## Estrutura do projeto
+src/tipos.ts — Contém a interface Despesa e o tipo Categoria.
+src/despesas.ts — Contém as funções para adicionar, remover, filtrar e calcular despesas.
+src/relatorio.ts — Contém as funções responsáveis pela descrição das categorias, matriz de gastos e formatação do relatório.
+src/index.ts — Contém as despesas de exemplo e executa o relatório principal.
+src/*.test.ts — Contém os testes automatizados das funções.
 
-src/tipos.ts
-   │
-   ▼
-src/despesas.ts
-   │
-   ▼
-src/relatorio.ts
-   │
-   ▼
-src/index.ts
-   │
-   ▼
-src/Relatório no terminal
-
-src/*.test.ts ─────► Testa as funções dos módulos
+## Arquivos de configuração
+package.json — Define as dependências, scripts do projeto e informações do projeto.
+tsconfig.json — Configura o TypeScript, incluindo o modo strict.
+.gitignore — Define arquivos e pastas que não devem ser enviados para o Git.
+vitest.config.ts — Configura o Vitest para execução dos testes, caso presente no projeto.
 
 ## Registro de uso de IA
 
